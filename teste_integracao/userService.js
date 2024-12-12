@@ -1,20 +1,24 @@
 class User {
     // construtor
-    constructor(userId ,nome, idade, genero) {
-        this.database = [];
-        this.userId = userId;
-        this.nome = nome;
-        this.idade = idade;
-        this.genero = genero;
+    constructor(database) {
+        this.database = database
     }
 
-    // cadastra um usuário
-    cadastrar(user) {
-        this.database.push(user);
+    // Adiciona uma postagem
+    cadastrar(name) {
+        const userId = Date.now(); 
+
+        const user = {
+            id: userId, 
+            name: name
+        };
+
+        this.database.users.push(user);   
+        return user;
     }
 
     usuarios() {
-        return this.database.map(user => `userId: ${user.userId}, nome: ${user.nome}, idade: ${user.idade}, genero: ${user.genero}`);
+        return this.database.users.find(user => user.userId === id);
     }
 }
 

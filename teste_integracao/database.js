@@ -1,5 +1,6 @@
 class Database{
     constructor(){
+        // inicializa os arrays de usuários e postagens
         this.users = [];
         this.posts = [];
     }

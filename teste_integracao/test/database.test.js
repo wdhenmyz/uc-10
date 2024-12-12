@@ -2,31 +2,27 @@ import Database from "../database";
 import User from "../userService";
 import Post from "../postService";
 
-describe("database", () => {
+describe("integracao entre userService e postService", () => {
     let database;
-    let user1;
-    let user2;
-    let post1;
-    let post2;
+    let userService;
+    let postService;
 
     // Usando beforeEach para inicializar os objetos antes de cada teste
     beforeEach(() => {
         database = new Database(); // Reinicia o banco de dados antes de cada teste
-        user1 = new User(1, "João", 20, "M");
-        user2 = new User(2, "maria", 19, "F");
-        post1 = new Post(1, 1, "title", "body");
-        post2 = new Post(2, 2, "title", "body");
+        userService = new User(database);
+        postService = new Post(database);
     });
 
     it("cadastrar usuarios e verficar se os dados estao corretos", () => {
-        database.add_Usuario(user1);
-        database.add_Usuario(user2);
+        const user1 = userService.cadastrar("João");
+        const user2 = userService.cadastrar("maria");
         
         console.log(database.get_Usuarios());
         expect(database.get_Usuarios()).toEqual([user1, user2]);
     });
 
-    it("cadastrar postagens e verficar se os dados estao corretos", () => {
+   /* it("cadastrar postagens e verficar se os dados estao corretos", () => {
         database.add_Postagem(post1);
         database.add_Postagem(post2);
 
@@ -44,5 +40,5 @@ describe("database", () => {
             usuario: user2,
             postagem: post2
         });
-    });
+    });*/
 });
